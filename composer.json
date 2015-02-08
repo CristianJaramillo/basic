@@ -1,0 +1,21 @@
+{
+    "name": "cristianjaramillo/basic",
+    "description": "SmartAdmin integration for Laravel",
+    "keywords": ["laravel", "basic"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cristian Jaramillo",
+            "email": "cristian_gerar@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CristianJaramillo\\Basic\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev"
+}
