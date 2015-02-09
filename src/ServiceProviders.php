@@ -10,7 +10,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
 	/**
      * Bootstrap the application events.
@@ -26,7 +26,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         ];
         
         $this->app['router']->group($routeConfig, function($router) {
-            $router->get('open', [
+            $router->get('basic', [
                 'uses' => 'BasicController@index',
                 'as' => 'cristianjaramillo.basic.index',
             ]);
