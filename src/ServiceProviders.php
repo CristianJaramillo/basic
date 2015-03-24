@@ -1,9 +1,10 @@
 <?php namespace CristianJaramillo\Basic;
 
-/**
- *
- */
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+use Illuminate\Support\ServiceProvider;
+use CristianJaramillo\Basic\Console\DBCreatorCommand;
+
+
+class ServiceProvider extends ServiceProvider
 {
 	/**
      * Indicates if loading of the provider is deferred.
@@ -19,21 +20,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
 	public function boot()
 	{
-        // Carga de vistas
-	    $this->loadViewsFrom(__DIR__.'/Views', 'basic');
 
-        // configuración de grupo de rutas
-    	$routeConfig = [
-            'namespace' => 'CristianJaramillo\Basic\Controllers',
-        ];
-        
-        // definición de rutas        
-        $this->app['router']->group($routeConfig, function($router) {
-            $router->get('basic', [
-                'uses' => 'BasicController@index',
-                'as' => 'cristianjaramillo.basic.index',
-            ]);
-        });
+        $this->package('cristianjaramillo/basic');
 
 	}
 
@@ -44,11 +32,20 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register()
     {
-        $this->app['command.basic.hello'] = $this->app->share(
-            function ($app) {
-                return new Console\BasicCommand();
-            }
-        );
+
+        foreach (['DB'] as $command) {
+            $this->{"register$command"}();
+        }
+
+        $this->commands('basic.db');
+
+    }
+
+    public function registerDB()
+    {
+        $this->app->bindShare('basic.db', function($app){
+            return new DBCreatorCommand();
+        });
     }
 
 	/**
@@ -58,7 +55,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function provides()
     {
-        return array('basic', 'command.basic.hello');
+        return array();
     }
 
 }

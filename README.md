@@ -1,1 +1,1 @@
-## Basic Package - For Laravel 4
+## Basic Package - For Laravel 4.2.*
