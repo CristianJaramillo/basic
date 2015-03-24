@@ -37,8 +37,6 @@ class BasicServiceProvider extends ServiceProvider
             $this->{"register$command"}();
         }
 
-        $this->commands('basic.db');
-
     }
 
     public function registerDB()
@@ -46,6 +44,8 @@ class BasicServiceProvider extends ServiceProvider
         $this->app['basic.db'] = $this->app->share(function($app){
             return new DBCreatorCommand();
         });
+    
+        $this->commands('basic.db');        
     }
 
 	/**
