@@ -33,7 +33,7 @@ class BasicServiceProvider extends ServiceProvider
     public function register()
     {
 
-        foreach (['DB'] as $command) {
+        foreach (['Db'] as $command) {
             $this->{"register$command"}();
         }
 
@@ -43,7 +43,7 @@ class BasicServiceProvider extends ServiceProvider
 
     public function registerDB()
     {
-        $this->app->bindShare('basic.db', function($app){
+        $this->app['basic.db'] = $this->app->share(function($app){
             return new DBCreatorCommand();
         });
     }
