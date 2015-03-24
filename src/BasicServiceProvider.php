@@ -4,7 +4,7 @@ use Illuminate\Support\ServiceProvider;
 use CristianJaramillo\Basic\Console\DBCreatorCommand;
 
 
-class ServiceProvider extends ServiceProvider
+class BasicServiceProvider extends ServiceProvider
 {
 	/**
      * Indicates if loading of the provider is deferred.
