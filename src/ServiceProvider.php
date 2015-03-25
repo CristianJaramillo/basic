@@ -1,10 +1,8 @@
 <?php namespace CristianJaramillo\Basic;
 
-use Illuminate\Support\ServiceProvider;
-use CristianJaramillo\Basic\Console\DBCreatorCommand;
+use CristianJaramillo\Basic\Console\CreatorDBCommand;
 
-
-class BasicServiceProvider extends ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 	/**
      * Indicates if loading of the provider is deferred.
@@ -32,20 +30,18 @@ class BasicServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
-        foreach (['Db'] as $command) {
+        foreach (['CreatorDB'] as $command) {
             $this->{"register$command"}();
         }
-
     }
 
-    public function registerDB()
+    public function registerCreatorDB()
     {
-        $this->app['basic.db'] = $this->app->share(function($app){
-            return new DBCreatorCommand();
+        $this->app['create.db'] = $this->app->share(function($app){
+            return new CreatorDBCommand();
         });
     
-        $this->commands('basic.db');        
+        $this->commands('create.db');        
     }
 
 	/**

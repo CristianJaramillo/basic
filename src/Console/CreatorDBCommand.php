@@ -7,14 +7,14 @@ use Symfony\Component\Console\Input\InputArgument;
 use Config;
 use DB;
 
-class DBCreatorCommand extends Command {
+class CreatorDBCommand extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'basic:db';
+	protected $name = 'create:db';
 
 	/**
 	 * The console command description.

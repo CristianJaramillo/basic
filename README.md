@@ -22,13 +22,13 @@ Loading a package from a VCS repository:
 
 After updating composer, add the ServiceProvider to the providers array in app/config/app.php
 
-```
+```php
 	'CristianJaramillo\Basic\ServiceProvider',
 ```
 
 Finally run:
 
-```
+```php
 	php artisan basic:db --database=laravel --username=root --password
 ```
 
